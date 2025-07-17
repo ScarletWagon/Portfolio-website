@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gurpreet Singh - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas element for the animated fireflies background -->
+  <canvas id="fireflies-bg"></canvas>
+  
+  <!-- Main content container -->
+  <main class="content">
+    <!-- Profile section with image, name, and tagline -->
+    <img src="https://via.placeholder.com/120" alt="Profile" class="profile-img">
+    <h1>Gurpreet Singh</h1>
+    <p>Full Stack Developer | Game Designer | AI/Cloud Architect</p>
+    
+    <!-- Tab navigation for different sections -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="about">About</button>
+      <button class="tab-btn" data-tab="skills">Skills</button>
+      <button class="tab-btn" data-tab="projects">Projects</button>
+    </nav>
+    
+    <!-- Tab content container -->
+    <div class="tab-content">
+      <!-- About tab - Personal information and social links -->
+      <div id="about" class="tab-pane active">
+        <h2>About Me</h2>
+        <p>Place holder text.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter">LinkedIn</a>
+          <a href="#" aria-label="LinkedIn">Github</a>
+          <a href="#" aria-label="GitHub">Contact</a>
+        </div>
+      </div>
+      
+      <!-- Skills tab - Technical skills with artistic logo grid -->
+      <div id="skills" class="tab-pane">
+        <h2>Skills</h2>
+        
+        <!-- Artistic skills grid container -->
+        <div class="skills-artistic-grid">
+          <!-- Frontend development skills category -->
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="skill-icons-grid">
+              <!-- HTML5 skill card -->
+              <div class="skill-card" data-lines="15,420">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                  <span class="skill-name">HTML5</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">15,420</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- CSS3 skill card -->
+              <div class="skill-card" data-lines="12,850">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                  <span class="skill-name">CSS3</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">12,850</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- JavaScript skill card -->
+              <div class="skill-card" data-lines="28,750">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                  <span class="skill-name">JavaScript</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">28,750</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- React skill card -->
+              <div class="skill-card" data-lines="22,300">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                  <span class="skill-name">React</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">22,300</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- Vue skill card -->
+              <div class="skill-card" data-lines="18,900">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+                  <span class="skill-name">Vue.js</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">18,900</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Backend development skills category -->
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <div class="skill-icons-grid">
+              <!-- Node.js skill card -->
+              <div class="skill-card" data-lines="32,150">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                  <span class="skill-name">Node.js</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">32,150</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- Python skill card -->
+              <div class="skill-card" data-lines="25,600">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                  <span class="skill-name">Python</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">25,600</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- Express skill card -->
+              <div class="skill-card" data-lines="19,800">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js">
+                  <span class="skill-name">Express.js</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">19,800</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- MongoDB skill card -->
+              <div class="skill-card" data-lines="14,200">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+                  <span class="skill-name">MongoDB</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">14,200</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- PostgreSQL skill card -->
+              <div class="skill-card" data-lines="16,750">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                  <span class="skill-name">PostgreSQL</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">16,750</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Development tools and platforms category -->
+          <div class="skill-category">
+            <h3>Tools</h3>
+            <div class="skill-icons-grid">
+              <!-- Git skill card -->
+              <div class="skill-card" data-lines="8,900">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                  <span class="skill-name">Git</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">8,900</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- VS Code skill card -->
+              <div class="skill-card" data-lines="6,500">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                  <span class="skill-name">VS Code</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">6,500</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- Docker skill card -->
+              <div class="skill-card" data-lines="11,200">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                  <span class="skill-name">Docker</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">11,200</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- AWS skill card -->
+              <div class="skill-card" data-lines="13,800">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS">
+                  <span class="skill-name">AWS</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">13,800</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+              
+              <!-- Figma skill card -->
+              <div class="skill-card" data-lines="4,200">
+                <div class="skill-card-front">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                  <span class="skill-name">Figma</span>
+                </div>
+                <div class="skill-card-back">
+                  <div class="lines-count">4,200</div>
+                  <div class="lines-label">Lines of Code</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Projects tab - Portfolio projects with YouTube-style thumbnails -->
+      <div id="projects" class="tab-pane">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <!-- E-Commerce Platform Project -->
+          <div class="project-card" data-project="ecommerce">
+            <div class="project-thumbnail">
+              <img src="https://via.placeholder.com/300x200/e53935/ffffff?text=Project+Alpha" alt="Project Alpha">
+            </div>
+            <div class="project-info">
+              <h3>Data Structures Visualizer</h3>
+              <p>A full Python build project that visualizes data structures like linked lists, stacks, queues, trees and more.</p>
+              <!-- Technology tags -->
+              <div class="project-stats">
+                <span class="stat">Python</span>
+                <span class="stat">PyQt5</span>
+                <span class="stat">Gui</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Task Management App Project -->
+          <div class="project-card" data-project="taskmanager">
+            <div class="project-thumbnail">
+              <img src="https://via.placeholder.com/300x200/e53935/ffffff?text=Project+Beta" alt="Project Beta">
+            </div>
+            <div class="project-info">
+              <h3>Flappy Bird Game</h3>
+              <p> The classic flappy bird game built with Java and Java swing</p>
+              <div class="project-stats">
+                <span class="stat">Java</span>
+                <span class="stat">Java swing</span> 
+                <span class="stat">OOP</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Portfolio Website Project -->
+          <div class="project-card" data-project="portfolio">
+            <div class="project-thumbnail">
+              <img src="https://via.placeholder.com/300x200/e53935/ffffff?text=Project+Gamma" alt="Project Gamma">
+            </div>
+            <div class="project-info">
+              <h3>Portfolio Website</h3>
+              <p>This interactive portfolio with animated fireflies background.</p>
+              <div class="project-stats">
+                <span class="stat">HTML5</span>
+                <span class="stat">CSS3</span>
+                <span class="stat">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Full-screen project overlay -->
+  <div id="project-overlay" class="project-overlay">
+    <div class="project-overlay-content">
+      <!-- Microsoft Store-style header -->
+      <header class="project-header">
+        <button class="back-btn" onclick="closeProject()">
+          <span class="back-icon">←</span>
+          Back
+        </button>
+        <h1 id="project-title">Data Structures Visualizer</h1>
+      </header>
+      
+      <!-- Main project content -->
+      <main class="project-main">
+        <!-- Hero section with large image and action buttons -->
+        <div class="hero-section">
+          <div class="hero-image">
+            <img id="hero-image" src="" alt="Project Hero">
+          </div>
+          <div class="hero-info">
+            <h2 id="hero-title">Data Structures Visualizer</h2>
+            <p class="developer">by Gurpreet Singh</p>
+            <div class="action-buttons">
+              <a href="#" class="btn-primary" id="demo-btn">Live Demo</a>
+              <a href="#" class="btn-secondary" id="source-btn">View Source</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project content sections -->
+        <div class="project-content">
+          <!-- Description section -->
+          <div class="description-section">
+            <h3>About this project</h3>
+            <p id="project-description">Project description will be loaded here.</p>
+            <h4>Key Features:</h4>
+            <ul id="project-features">
+              <!-- Features will be loaded here -->
+            </ul>
+          </div>
+          
+          <!-- Screenshots section -->
+          <div class="screenshots-section">
+            <h3>Screenshots</h3>
+            <div class="screenshots-grid" id="screenshots-grid">
+              <!-- Screenshots will be loaded here -->
+            </div>
+          </div>
+          
+          <!-- Technologies section -->
+          <div class="tech-section">
+            <h3>Technologies Used</h3>
+            <div class="tech-grid" id="tech-grid">
+              <!-- Technologies will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <!-- JavaScript file for animations and interactions -->
+  <script src="script.js"></script>
+</body>
+</html> 

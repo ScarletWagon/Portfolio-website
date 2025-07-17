@@ -463,7 +463,7 @@ function getProjectData(projectId) {
     
     todoapp: {
       title: "To-Do App",
-      heroImage: "https://via.placeholder.com/800x400e53935/ffffff?text=To-Do+App",
+      heroImage: "content/images/project 4/1.png",
       description: "A modern, category-based to-do application with Google Drive synchronization and personalization features. Built with React, Node.js, and MongoDB, this app provides a seamless task management experience with cloud backup capabilities.",
       features: [
         "Category-based task organization",
@@ -475,10 +475,10 @@ function getProjectData(projectId) {
         "Modern UI with intuitive navigation"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200e53935fff?text=Dashboard",
-        "https://via.placeholder.com/300x200e53935/ffffff?text=Task+Categories",
-        "https://via.placeholder.com/300x200e53935ffffff?text=Google+Drive+Sync",
-        "https://via.placeholder.com/300x200e53935ffff?text=Settings"
+        "content/images/project 4/2.png",
+        "content/images/project 4/3.png",
+        "content/images/project 4/4.png",
+        "content/images/project 4/5.png"
       ],
       technologies: {
         "Frontend": ["React.js", "Material-UI", "React Router"],
@@ -491,7 +491,7 @@ function getProjectData(projectId) {
     },
     webcalendar: {
       title: "Web Calendar",
-      heroImage: "https://via.placeholder.com/800x400/e53935/ffffff?text=Web+Calendar",
+      heroImage: "content/images/project 5/1.jpg",
       description: "A web-based customizable calendar for managing events and schedules. Features month, week, and day views, event creation, and responsive design.",
       features: [
         "Customizable event creation and editing",
@@ -502,10 +502,10 @@ function getProjectData(projectId) {
         "Modern and clean UI"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Month+View",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Week+View",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Event+Dialog",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Mobile+View"
+        "content/images/project 5/1.jpg",
+        "content/images/project 5/2.png",
+        "content/images/project 5/3.png",
+        "content/images/project 5/2.png"
       ],
       technologies: {
         "Frontend": ["HTML5", "CSS3", "JavaScript"],

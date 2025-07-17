@@ -1,3 +1,6 @@
+/* ===== FONT IMPORTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300000&display=swap');
+
 /* ===== GLOBAL STYLES ===== */
 /* Reset default browser styles and set up base styling */
 body, html {
@@ -6,8 +9,8 @@ body, html {
   width: 100%;
   min-height: 100vh;
   background: #000;
-  color: #fff;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #F5F5F7;
+  font-family: -apple-system, BlinkMacSystemFont,SF Pro Display,Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 /* ===== FIREFLIES BACKGROUND ===== */
@@ -43,18 +46,18 @@ body, html {
 /* Circular profile image with red border and glow effect */
 .profile-img {
   border-radius: 50%; /* Makes the image circular */
-  border: 4px solid #e53935; /* Red border */
+  border: 4px solid #6EC1E4; /* Red border */
   width: 120px;
   height: 120px;
   margin-bottom: 1.5rem;
-  box-shadow: 0 0 20px #e5393544; /* Subtle red glow effect */
+  box-shadow: 0 0 20px #6EC1E444; /* Subtle red glow effect */
 }
 
 /* Main heading with red color and letter spacing */
 h1 {
   font-size: 2.5rem;
   margin: 0.5rem 0;
-  color: #e53935; /* Red color for brand consistency */
+  color: #6EC1E4; /* Red color for brand consistency */
   letter-spacing: 2px; /* Spaced out letters for modern look */
 }
 
@@ -62,7 +65,7 @@ h1 {
 p {
   font-size: 1.2rem;
   margin: 0.5rem 0 1.5rem 0;
-  color: #fff;
+  color: #F5F5F7;
 }
 
 /* ===== SOCIAL LINKS ===== */
@@ -75,8 +78,8 @@ p {
 
 /* Individual social link buttons */
 .social-links a {
-  color: #fff;
-  background: #e53935; /* Red background */
+  color: #222;
+  background: #6EC1E4; /* Red background */
   padding: 0.5rem 1.2rem;
   border-radius: 20px; /* Rounded corners */
   text-decoration: none;
@@ -86,8 +89,8 @@ p {
 
 /* Hover effect for social links */
 .social-links a:hover {
-  background: #fff;
-  color: #e53935; /* Inverted colors on hover */
+  background: #222;
+  color: #6EC1E4; /* Inverted colors on hover */
 }
 
 /* ===== TAB NAVIGATION ===== */
@@ -102,8 +105,8 @@ p {
 /* Individual tab button styling */
 .tab-btn {
   background: transparent;
-  border: 2px solid #e53935; /* Red border */
-  color: #e53935;
+  border: 2px solid #6EC1E4; /* Red border */
+  color: #6EC1E4;
   padding: 0.8rem 1.5rem;
   border-radius: 25px; /* Rounded corners */
   cursor: pointer;
@@ -115,9 +118,9 @@ p {
 /* Hover and active states for tab buttons */
 .tab-btn:hover,
 .tab-btn.active {
-  background: #e53935; /* Red background when active/hovered */
-  color: #fff;
-  box-shadow: 0 0 15px #e5393544; /* Red glow effect */
+  background: #6EC1E4; /* Red background when active/hovered */
+  color: #222;
+  box-shadow: 0 0 15px #6EC1E444; /* Red glow effect */
 }
 
 /* ===== TAB CONTENT ===== */
@@ -164,24 +167,24 @@ p {
 
 /* Individual skill category card with enhanced styling */
 .skill-category {
-  background: rgba(229, 57, 53, 0.1); /* Semi-transparent red background */
-  border: 2px solid #e53935;
+  background: rgba(110, 193, 228, 0.08); /* Semi-transparent red background */
+  border: 2px solid #6EC1E4;
   border-radius: 20px; /* More rounded corners for artistic look */
   padding: 2rem;
   backdrop-filter: blur(15px); /* Enhanced glass-morphism effect */
-  box-shadow: 0 10px 30px rgba(229, 57, 53, 0.2); /* Subtle glow effect */
+  box-shadow: 0 10px 30px rgba(110, 193, 228, 0.12); /* Subtle glow effect */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transitions */
 }
 
 /* Hover effect for skill categories */
 .skill-category:hover {
   transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 15px 40px rgba(229, 57, 53, 0.3); /* Enhanced glow on hover */
+  box-shadow: 0 15px 40px rgba(110, 193, 228, 0.18); /* Enhanced glow on hover */
 }
 
 /* Skill category heading with artistic styling */
 .skill-category h3 {
-  color: #e53935;
+  color: #6EC1E4;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   text-align: center;
@@ -200,7 +203,7 @@ p {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #e53935, transparent);
+  background: linear-gradient(90deg, #6EC1E4 0%, #7FDBFF 100%);
   border-radius: 2px;
 }
 
@@ -234,8 +237,8 @@ p {
 .skill-card-front {
   width: 100%;
   height: 100%;
-  background: rgba(229, 57, 53, 0.15);
-  border: 2px solid rgba(229, 57, 53, 0.3);
+  background: rgba(110, 193, 228, 0.15);
+  border: 2px solid rgba(110, 193, 228, 0.3);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -254,8 +257,8 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(229, 57, 53, 0.25);
-  border: 2px solid #e53935;
+  background: rgba(110, 193, 228, 0.25);
+  border: 2px solid #6EC1E4;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -309,7 +312,7 @@ p {
 .lines-count {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #e53935;
+  color: #6EC1E4;
   margin-bottom: 0.2rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow for readability */
 }
@@ -407,19 +410,20 @@ p {
 
 /* Individual project card with YouTube-style thumbnail */
 .project-card {
-  background: rgba(229, 57, 53, 0.1); /* Semi-transparent red background */
-  border: 1px solid #e53935;
-  border-radius: 15px;
+  background: rgba(110, 193, 228, 0.06); /* Semi-transparent red background */
+  border: 1.5px solid #6EC1E4;
+  border-radius: 18px;
   overflow: hidden; /* Hides overflow for thumbnail scaling effect */
   backdrop-filter: blur(10px); /* Glass-morphism effect */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transitions */
+  transition: box-shadow 0.3s, transform 0.3s; /* Smooth hover transitions */
   cursor: pointer; /* Indicates clickable element */
+  box-shadow: 0 4px 18px rgba(110, 193, 228, 0.10);
 }
 
 /* Hover effect for project cards */
 .project-card:hover {
-  transform: translateY(-6px); /* Reduced lift for better performance */
-  box-shadow: 0 12px 25px rgba(229, 57, 53, 0.3); /* Reduced shadow for better performance */
+  box-shadow: 0 8px 32px rgba(110, 193, 228, 0.18);
+  transform: translateY(-4px) scale(1.02);
 }
 
 /* Active state for project cards when clicked */
@@ -460,14 +464,14 @@ p {
 
 /* Project title */
 .project-info h3 {
-  color: #e53935;
+  color: #6EC1E4;
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
 }
 
 /* Project description */
 .project-info p {
-  color: #fff;
+  color: #F5F5F7;
   margin-bottom: 1rem;
   line-height: 1.6;
   font-size: 0.95rem;
@@ -483,12 +487,13 @@ p {
 
 /* Individual technology tag */
 .stat {
-  background: rgba(229, 57, 53, 0.2); /* Semi-transparent red background */
-  color: #e53935;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px; /* Rounded corners */
-  font-size: 0.8rem;
-  border: 1px solid rgba(229, 57, 53, 0.3); /* Subtle border */
+  background: #6EC1E4;
+  color: #222;
+  border-radius: 12px;
+  padding: 0.2rem 0.7rem;
+  margin-right: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -572,8 +577,8 @@ p {
 
 /* Microsoft Store-style header */
 .project-header {
-  background: rgba(229, 57, 53, 0.1);
-  border-bottom: 1px solid #e53935;
+  background: rgba(110, 193, 228, 0.08);
+  border-bottom: 1px solid #6EC1E4;
   padding: 1rem 0;
   backdrop-filter: blur(10px);
   position: sticky;
@@ -582,7 +587,7 @@ p {
 }
 
 .project-header h1 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 1.8rem;
   margin: 0;
 }
@@ -590,8 +595,8 @@ p {
 /* Back button styling */
 .back-btn {
   background: transparent;
-  border: 1px solid #e53935;
-  color: #e53935;
+  border: 1px solid #6EC1E4;
+  color: #6EC1E4;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   cursor: pointer;
@@ -604,8 +609,8 @@ p {
 
 /* Back button hover effect */
 .back-btn:hover {
-  background: #e53935;
-  color: #fff;
+  background: #6EC1E4;
+  color: #222;
   transform: translateX(-3px);
 }
 
@@ -634,7 +639,7 @@ p {
 .hero-image {
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(229, 57, 53, 0.3);
+  box-shadow: 0 10px 30px rgba(110, 193, 228, 0.18);
 }
 
 .hero-image img {
@@ -648,7 +653,7 @@ p {
 }
 
 .hero-info h2 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
@@ -666,39 +671,39 @@ p {
 }
 
 .btn-primary, .btn-secondary {
-  padding: 1rem 2rem;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
+  font-family: inherit;
   font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
+  border-radius: 22px;
+  padding: 0.7rem 1.6rem;
+  border: none;
+  outline: none;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-.btn-primary {
-  background: #e53935;
-  color: #fff;
+.action-buttons .btn-primary {
+  background: #6EC1E4;
+  color: #222;
+  font-weight: 600;
+  box-shadow: 0 2px 8px #6EC1E433;
 }
 
-.btn-primary:hover {
-  background: #d32f2f;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(229, 57, 53, 0.4);
+.action-buttons .btn-primary:hover {
+  background: #7FDBFF;
+  color: #222;
 }
 
-.btn-secondary {
-  background: transparent;
-  color: #e53935;
-  border: 2px solid #e53935;
+.action-buttons .btn-secondary {
+  background: #222;
+  color: #6EC1E4;
+  font-weight: 600;
+  border: 1.5px solid #6EC1E4;
 }
 
-.btn-secondary:hover {
-  background: #e53935;
-  color: #fff;
-  transform: translateY(-2px);
+.action-buttons .btn-secondary:hover {
+  background: #6EC1E4;
+  color: #222;
 }
 
 /* Project content */
@@ -708,21 +713,21 @@ p {
 }
 
 .description-section, .screenshots-section, .tech-section {
-  background: rgba(229, 57, 53, 0.05);
-  border: 1px solid rgba(229, 57, 53, 0.2);
+  background: rgba(110, 193, 228, 0.05);
+  border: 1px solid rgba(110, 193, 228, 0.2);
   border-radius: 15px;
   padding: 2rem;
   backdrop-filter: blur(10px);
 }
 
 .description-section h3, .screenshots-section h3, .tech-section h3 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
 }
 
 .description-section h4 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 1.3rem;
   margin: 1.5rem 0 1rem 0;
 }
@@ -742,14 +747,14 @@ p {
 .description-section li {
   color: #fff;
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(229, 57, 53, 0.2);
+  border-bottom: 1px solid rgba(110, 193, 228, 0.2);
   position: relative;
   padding-left: 1.5rem;
 }
 
 .description-section li:before {
   content: "•";
-  color: #e53935;
+  color: #6EC1E4;
   position: absolute;
   left: 0;
   font-weight: bold;
@@ -771,13 +776,13 @@ p {
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
-  border: 1px solid rgba(229, 57, 53, 0.3);
+  border: 1px solid rgba(110, 193, 228, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .screenshots-grid img:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(229, 57, 53, 0.4);
+  box-shadow: 0 10px 25px rgba(110, 193, 228, 0.4);
 }
 
 /* Technology grid */
@@ -788,14 +793,14 @@ p {
 }
 
 .tech-item {
-  background: rgba(229, 57, 53, 0.1);
-  border: 1px solid rgba(229, 57, 53, 0.3);
+  background: rgba(110, 193, 228, 0.1);
+  border: 1px solid rgba(110, 193, 228, 0.3);
   border-radius: 10px;
   padding: 1.5rem;
 }
 
 .tech-item h4 {
-  color: #e53935;
+  color: #6EC1E4;
   margin-bottom: 1rem;
   font-size: 1.2rem;
 }
@@ -808,7 +813,7 @@ p {
 .tech-item li {
   color: #fff;
   padding: 0.3rem 0;
-  border-bottom: 1px solid rgba(229, 57, 53, 0.2);
+  border-bottom: 1px solid rgba(110, 193, 228, 0.2);
 }
 
 .tech-item li:last-child {

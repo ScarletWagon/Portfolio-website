@@ -16,10 +16,10 @@ const FIREFLY_COUNT = 150;
 const FIREFLY_MIN_RADIUS = 3;
 const FIREFLY_MAX_RADIUS = 5;
 // Movement speed range for fireflies (pixels per frame) - controls how fast they move
-const FIREFLY_MIN_SPEED = 0.5;
-const FIREFLY_MAX_SPEED = 0.7;
+const FIREFLY_MIN_SPEED = 0.25;
+const FIREFLY_MAX_SPEED = 0.4;
 // Glow intensity range (0-1) - controls how bright each firefly appears
-const GLOW_MIN = 0.7;
+const GLOW_MIN = 0.3;
 const GLOW_MAX = 1.0;
 // Speed of glow transitions (natural breathing effect)
 const GLOW_SPEED = 0.006;
@@ -99,8 +99,8 @@ class Firefly {
     this.glowDir = Math.random() > 0.5 ? 1 : -1; // Random glow direction (brighten/dim)
     this.glowSpeed = randomBetween(0.5, 1.2); // Individual glow speed variation
     
-    // Firefly color (red theme to match portfolio design)
-    this.color = 'rgba(229,57,53,1)'; // Red color
+    // Firefly color (baby blue theme to match new design)
+    this.color = 'rgba(110,193,228,1)'; // Baby blue color
     
     // Direction change timing for natural movement patterns
     this.changeDirectionTimer = 0;
@@ -215,14 +215,14 @@ class Firefly {
       this.x, this.y, this.radius * 2.5 // Reduced glow size for performance
     );
     
-    // Simplified gradient stops for better performance
-    gradient.addColorStop(0, `rgba(229, 57, 53, ${this.glow})`);
-    gradient.addColorStop(0.6, `rgba(229, 57, 53, ${this.glow * 0.4})`);
-    gradient.addColorStop(1, 'rgba(229, 57, 53, 0)');
+    // Baby blue gradient stops
+    gradient.addColorStop(0, `rgba(110, 193, 228, ${this.glow})`);
+    gradient.addColorStop(0.6, `rgba(110, 193, 228, ${this.glow * 0.4})`);
+    gradient.addColorStop(1, 'rgba(110, 193, 228, 0)');
     
     // ===== OPTIMIZED RENDERING CONTEXT =====
     ctx.globalAlpha = this.glow;
-    ctx.shadowColor = 'rgba(229, 57, 53, 0.7)';
+    ctx.shadowColor = 'rgba(110, 193, 228, 0.7)';
     ctx.shadowBlur = 20 * this.glow; // Reduced shadow blur for performance
     
     // ===== DRAW OPTIMIZED GLOWING DOT =====
@@ -309,8 +309,14 @@ function populateProjectContent(projectData) {
   document.getElementById('hero-title').textContent = projectData.title;
   
   // Update action buttons
-  document.getElementById('demo-btn').href = projectData.demoUrl;
-  document.getElementById('source-btn').href = projectData.sourceUrl;
+  const demoBtn = document.getElementById('demo-btn');
+  const sourceBtn = document.getElementById('source-btn');
+  
+  demoBtn.href = projectData.demoUrl;
+  demoBtn.target = "_blank";
+  
+  sourceBtn.href = projectData.sourceUrl;
+  sourceBtn.target = "_blank";
   
   // Update description
   document.getElementById('project-description').textContent = projectData.description;
@@ -372,67 +378,65 @@ function closeProject() {
 function getProjectData(projectId) {
   const projects = {
     ecommerce: {
-      title: "Project Alpha",
-      heroImage: "https://via.placeholder.com/800x400/e53935/ffffff?text=Project+Alpha",
-      description: "A comprehensive full-stack e-commerce solution built with modern web technologies. This platform provides a complete online shopping experience with user authentication, product management, shopping cart functionality, and secure payment processing.",
+      title: "Data Structures Visualizer",
+      heroImage: "https://via.placeholder.com/800x400e53935/ffffff?text=Data+Structures+Visualizer",
+      description: "A full Python build project that visualizes data structures like linked lists, stacks, queues, trees and more. This interactive application helps students and developers understand complex data structures through visual representation.",
       features: [
-        "User authentication and authorization",
-        "Product catalog with search and filtering",
-        "Shopping cart and wishlist functionality",
-        "Secure payment processing with Stripe",
-        "Admin dashboard for product management",
-        "Order tracking and history",
-        "Responsive design for all devices"
+        "Interactive visualization of data structures",
+        "Linked lists, stacks, queues, and trees",
+        "Step-by-step animation of operations",
+        "Educational tool for learning algorithms",
+        "Python-based implementation with GUI",
+        "Real-time data structure manipulation",
+        "User-friendly interface for beginners"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Home+Page",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Product+Page",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Cart",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Admin+Panel"
+        "https://via.placeholder.com/300x200e53935ffffff?text=Linked+List+View",
+        "https://via.placeholder.com/300x200e53935/ffffff?text=Stack+Visualization",
+        "https://via.placeholder.com/300x200e53935/ffffff?text=Queue+Operations",
+        "https://via.placeholder.com/300x200e53935/ffffff?text=Tree+Structure"
       ],
       technologies: {
-        "Frontend": ["React.js", "Redux for state management", "Styled Components", "React Router"],
-        "Backend": ["Node.js", "Express.js", "JWT Authentication", "RESTful API"],
-        "Database": ["MongoDB", "Mongoose ODM", "MongoDB Atlas"],
-        "Services": ["Stripe Payment", "AWS S3 for images", "SendGrid for emails"]
+        "Frontend": ["Python", "PyQt5, GUI Framework, Canvas Drawing"],
+        "Backend": ["Python", "Data Structures, Algorithms", "Object-Oriented Programming"],
+        "Features": ["Interactive Animations", "Educational Content", "Real-time Updates", "Cross-platform Support"]
       },
       demoUrl: "#",
-      sourceUrl: "#"
+      sourceUrl: "https://github.com/ScarletWagon/data-structures-visualizer"
     },
     
     taskmanager: {
-      title: "Project Beta",
-      heroImage: "https://via.placeholder.com/800x400/e53935/ffffff?text=Project+Beta",
-      description: "A collaborative task management application designed for teams to organize, track, and complete projects efficiently with real-time updates and seamless communication features.",
+      title: "Flappy Bird Game",
+      heroImage: "https://via.placeholder.com/800x400e53935ffffff?text=Flappy+Bird+Game",
+      description: "The classic flappy bird game built with Java and Java Swing. A complete implementation featuring smooth gameplay, collision detection, and score tracking with a nostalgic retro feel.",
       features: [
-        "Create, assign, and track tasks with priority levels",
-        "Kanban board view for visual project management",
-        "Real-time collaboration with team members",
-        "Instant notifications and comments system",
-        "File sharing capabilities for seamless teamwork",
-        "Comprehensive analytics dashboard",
-        "Project progress tracking and reporting"
+        "Classic Flappy Bird gameplay mechanics",
+        "Smooth bird animation and physics",
+        "Collision detection with pipes",
+        "Score tracking and high score system",
+        "Java Swing GUI implementation",
+        "Object-oriented programming design",
+        "Cross-platform Java compatibility"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Dashboard",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Kanban+Board",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Task+Details",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Analytics"
+        "https://via.placeholder.com/300x200e53935/ffffff?text=Game+Start",
+        "https://via.placeholder.com/300x200e53935ffff?text=Gameplay",
+        "https://via.placeholder.com/300x200e53935fff?text=Collision",
+        "https://via.placeholder.com/300x200e53935/ffffff?text=Score+Screen"
       ],
       technologies: {
-        "Frontend": ["Vue.js", "Vuex for state management", "Vue Router", "Chart.js"],
-        "Backend": ["Node.js", "Express.js", "Socket.io", "JWT Authentication"],
-        "Database": ["PostgreSQL", "Sequelize ORM", "Redis for caching"],
-        "Services": ["AWS S3", "SendGrid", "WebSocket connections"]
+        "Frontend": ["Java", "Java Swing", "GUI Components", "Physics2D"],
+        "Backend": ["Java", "Game Logic", "Physics Engine", "Object-Oriented Design"],
+        "Features": ["Game Loop", "Collision Detection", "Score System", "Cross-platform"]
       },
       demoUrl: "#",
-      sourceUrl: "#"
+      sourceUrl: "https://github.com/ScarletWagon/Flappy-Bird--Java"
     },
     
     portfolio: {
-      title: "Project Gamma",
-      heroImage: "https://via.placeholder.com/800x400/e53935/ffffff?text=Project+Gamma",
-      description: "An interactive portfolio website featuring an animated fireflies background that creates an immersive and engaging user experience while showcasing professional work and skills.",
+      title: "Portfolio Website",
+      heroImage: "https://via.placeholder.com/800x400e53935fff?text=Portfolio+Website",
+      description: "This interactive portfolio website with animated fireflies background. Features a modern, responsive design with smooth animations and professional presentation of skills and projects.",
       features: [
         "Dynamic fireflies animation with mouse interaction",
         "Responsive design for all device sizes",
@@ -443,10 +447,10 @@ function getProjectData(projectId) {
         "Cross-browser compatibility"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Home+Page",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Projects+View",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Skills+Section",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Mobile+View"
+        "https://via.placeholder.com/300x200e53935/ffffff?text=Home+Page",
+        "https://via.placeholder.com/300x200e53935ffff?text=Projects+View",
+        "https://via.placeholder.com/300x200e53935ffffff?text=Skills+Section",
+        "https://via.placeholder.com/300x200e53935ffffff?text=Mobile+View"
       ],
       technologies: {
         "Frontend": ["HTML5", "CSS3", "JavaScript (ES6+)", "Canvas API"],
@@ -454,7 +458,87 @@ function getProjectData(projectId) {
         "Features": ["Responsive Design", "Interactive Animations", "Modern UI/UX", "Cross-browser Support"]
       },
       demoUrl: "#",
-      sourceUrl: "#"
+      sourceUrl: "https://github.com/ScarletWagon/portfolio-website"
+    },
+    
+    todoapp: {
+      title: "To-Do App",
+      heroImage: "https://via.placeholder.com/800x400e53935/ffffff?text=To-Do+App",
+      description: "A modern, category-based to-do application with Google Drive synchronization and personalization features. Built with React, Node.js, and MongoDB, this app provides a seamless task management experience with cloud backup capabilities.",
+      features: [
+        "Category-based task organization",
+        "Google Drive synchronization",
+        "Personalization and customization options",
+        "Real-time updates and notifications",
+        "Responsive design for all devices",
+        "User authentication and data persistence",
+        "Modern UI with intuitive navigation"
+      ],
+      screenshots: [
+        "https://via.placeholder.com/300x200e53935fff?text=Dashboard",
+        "https://via.placeholder.com/300x200e53935/ffffff?text=Task+Categories",
+        "https://via.placeholder.com/300x200e53935ffffff?text=Google+Drive+Sync",
+        "https://via.placeholder.com/300x200e53935ffff?text=Settings"
+      ],
+      technologies: {
+        "Frontend": ["React.js", "Material-UI", "React Router"],
+        "Backend": ["Node.js", "Express.js", "JWT Authentication", "RESTful API"],
+        "Database": ["MongoDB", "Mongoose ODM", "Cloud Storage"],
+        "Services": ["Google Drive API", "Cloud Sync", "Real-time Updates"]
+      },
+      demoUrl: "https://scarletwagon.github.io/To-Do-App/",
+      sourceUrl: "https://github.com/ScarletWagon/To-Do-App"
+    },
+    webcalendar: {
+      title: "Web Calendar",
+      heroImage: "https://via.placeholder.com/800x400/e53935/ffffff?text=Web+Calendar",
+      description: "A web-based customizable calendar for managing events and schedules. Features month, week, and day views, event creation, and responsive design.",
+      features: [
+        "Customizable event creation and editing",
+        "Month, week, and day calendar views",
+        "Responsive design for all devices",
+        "Event color coding",
+        "Navigation between dates",
+        "Modern and clean UI"
+      ],
+      screenshots: [
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Month+View",
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Week+View",
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Event+Dialog",
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Mobile+View"
+      ],
+      technologies: {
+        "Frontend": ["HTML5", "CSS3", "JavaScript"],
+        "Features": ["Responsive Design", "Event Management", "Modern UI"]
+      },
+      demoUrl: "https://scarletwagon.github.io/Web-Calendar/",
+      sourceUrl: "https://github.com/ScarletWagon/Web-Calendar"
+    },
+    urlshortner: {
+      title: "Url-Shortner",
+      heroImage: "https://via.placeholder.com/800x400/e53935/ffffff?text=Url+Shortner",
+      description: "A web-based URL link shortener with a full-stack implementation. Easily shorten long URLs, track usage, and manage your links with a modern interface.",
+      features: [
+        "Shorten long URLs to simple links",
+        "Automatic redirection from short to long URLs",
+        "View usage statistics for each link",
+        "User-friendly and responsive interface",
+        "MongoDB backend for persistent storage",
+        "RESTful API for link management"
+      ],
+      screenshots: [
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Shorten+URL",
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Stats+View",
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Link+List",
+        "https://via.placeholder.com/300x200/e53935/ffffff?text=Mobile+View"
+      ],
+      technologies: {
+        "Frontend": ["HTML5", "CSS3", "JavaScript"],
+        "Backend": ["Node.js", "Express.js", "MongoDB"],
+        "Features": ["RESTful API", "URL Redirection", "Usage Stats"]
+      },
+      demoUrl: "#",
+      sourceUrl: "https://github.com/ScarletWagon/Url-Shortner"
     }
   };
   

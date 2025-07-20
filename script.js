@@ -575,6 +575,36 @@ function getProjectData(projectId) {
       },
       demoUrl: "https://github.com/ScarletWagon/Class-Cast#readme",
       sourceUrl: "https://github.com/ScarletWagon/Class-Cast"
+    },
+    aistudybuddy: {
+      title: "AI Study Buddy",
+      heroImage: "content/images/project 8/logo.png",
+      description: "AI Study Buddy is an AI-powered study assistant designed to help students learn smarter, not harder. It offers intelligent flashcards, adaptive quizzes, and personalized study plans, leveraging artificial intelligence to identify knowledge gaps and optimize revision. With a clean, modern interface and seamless integration of AI tools, it transforms the way students prepare for exams and master new material.",
+      features: [
+        "Create and manage smart flashcards with AI-generated hints",
+        "Adaptive quizzes that focus on weak areas",
+        "Personalized study plans based on progress and goals",
+        "Natural language Q&A with AI explanations",
+        "Import notes and generate study questions automatically",
+        "Track learning streaks and performance analytics",
+        "Collaborative study groups and shared decks",
+        "Responsive, mobile-friendly design",
+        "Dark mode and accessibility options",
+        "Open source and privacy-focused"
+      ],
+      screenshots: [
+        "content/images/project 8/1.png",
+        "content/images/project 8/2.png",
+        "content/images/project 8/3.png",
+        "content/images/project 8/4.png"
+      ],
+      technologies: {
+        "Frontend": ["React", "JavaScript (ES6+)", "HTML5", "CSS3"],
+        "AI": ["Google Gemini API", "Natural Language Processing"],
+        "Features": ["Flashcards", "Quizzes", "Personalized Plans", "Analytics"]
+      },
+      demoUrl: "",
+      sourceUrl: "https://github.com/ScarletWagon/AI-study-buddy"
     }
   };
   

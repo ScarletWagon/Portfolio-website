@@ -379,7 +379,7 @@ function getProjectData(projectId) {
   const projects = {
     ecommerce: {
       title: "Data Structures Visualizer",
-      heroImage: "https://via.placeholder.com/800x400e53935/ffffff?text=Data+Structures+Visualizer",
+      heroImage: "content/images/project 1/logo.png",
       description: "A full Python build project that visualizes data structures like linked lists, stacks, queues, trees and more. This interactive application helps students and developers understand complex data structures through visual representation.",
       features: [
         "Interactive visualization of data structures",
@@ -391,10 +391,10 @@ function getProjectData(projectId) {
         "User-friendly interface for beginners"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200e53935ffffff?text=Linked+List+View",
-        "https://via.placeholder.com/300x200e53935/ffffff?text=Stack+Visualization",
-        "https://via.placeholder.com/300x200e53935/ffffff?text=Queue+Operations",
-        "https://via.placeholder.com/300x200e53935/ffffff?text=Tree+Structure"
+        "content/images/project 1/1.png",
+        "content/images/project 1/2.png",
+        "content/images/project 1/3.png",
+        "content/images/project 1/4.png"
       ],
       technologies: {
         "Frontend": ["Python", "PyQt5, GUI Framework, Canvas Drawing"],
@@ -407,7 +407,7 @@ function getProjectData(projectId) {
     
     taskmanager: {
       title: "Flappy Bird Game",
-      heroImage: "https://via.placeholder.com/800x400e53935ffffff?text=Flappy+Bird+Game",
+      heroImage: "content/images/project 2/logo.png",
       description: "The classic flappy bird game built with Java and Java Swing. A complete implementation featuring smooth gameplay, collision detection, and score tracking with a nostalgic retro feel.",
       features: [
         "Classic Flappy Bird gameplay mechanics",
@@ -419,10 +419,10 @@ function getProjectData(projectId) {
         "Cross-platform Java compatibility"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200e53935/ffffff?text=Game+Start",
-        "https://via.placeholder.com/300x200e53935ffff?text=Gameplay",
-        "https://via.placeholder.com/300x200e53935fff?text=Collision",
-        "https://via.placeholder.com/300x200e53935/ffffff?text=Score+Screen"
+        "content/images/project 2/1.png",
+        "content/images/project 2/2.png",
+        "content/images/project 2/3.png",
+        "content/images/project 2/4.png"
       ],
       technologies: {
         "Frontend": ["Java", "Java Swing", "GUI Components", "Physics2D"],
@@ -435,7 +435,7 @@ function getProjectData(projectId) {
     
     portfolio: {
       title: "Portfolio Website",
-      heroImage: "https://via.placeholder.com/800x400e53935fff?text=Portfolio+Website",
+      heroImage: "content/images/project 3/logo.png",
       description: "This interactive portfolio website with animated fireflies background. Features a modern, responsive design with smooth animations and professional presentation of skills and projects.",
       features: [
         "Dynamic fireflies animation with mouse interaction",
@@ -447,10 +447,10 @@ function getProjectData(projectId) {
         "Cross-browser compatibility"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200e53935/ffffff?text=Home+Page",
-        "https://via.placeholder.com/300x200e53935ffff?text=Projects+View",
-        "https://via.placeholder.com/300x200e53935ffffff?text=Skills+Section",
-        "https://via.placeholder.com/300x200e53935ffffff?text=Mobile+View"
+        "content/images/project 3/1.png",
+        "content/images/project 3/2.png",
+        "content/images/project 3/3.png",
+        "content/images/project 3/4.png"
       ],
       technologies: {
         "Frontend": ["HTML5", "CSS3", "JavaScript (ES6+)", "Canvas API"],
@@ -516,7 +516,7 @@ function getProjectData(projectId) {
     },
     urlshortner: {
       title: "Url-Shortner",
-      heroImage: "https://via.placeholder.com/800x400/e53935/ffffff?text=Url+Shortner",
+      heroImage: "content/images/project 6/logo.png",
       description: "A web-based URL link shortener with a full-stack implementation. Easily shorten long URLs, track usage, and manage your links with a modern interface.",
       features: [
         "Shorten long URLs to simple links",

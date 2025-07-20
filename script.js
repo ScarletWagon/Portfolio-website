@@ -312,8 +312,13 @@ function populateProjectContent(projectData) {
   const demoBtn = document.getElementById('demo-btn');
   const sourceBtn = document.getElementById('source-btn');
   
-  demoBtn.href = projectData.demoUrl;
-  demoBtn.target = "_blank";
+  if (projectData.demoUrl && projectData.demoUrl !== "") {
+    demoBtn.style.display = '';
+    demoBtn.href = projectData.demoUrl;
+    demoBtn.target = "_blank";
+  } else {
+    demoBtn.style.display = 'none';
+  }
   
   sourceBtn.href = projectData.sourceUrl;
   sourceBtn.target = "_blank";
@@ -401,7 +406,7 @@ function getProjectData(projectId) {
         "Backend": ["Python", "Data Structures, Algorithms", "Object-Oriented Programming"],
         "Features": ["Interactive Animations", "Educational Content", "Real-time Updates", "Cross-platform Support"]
       },
-      demoUrl: "#",
+      demoUrl: "",
       sourceUrl: "https://github.com/ScarletWagon/data-structures-visualizer"
     },
     
@@ -429,7 +434,7 @@ function getProjectData(projectId) {
         "Backend": ["Java", "Game Logic", "Physics Engine", "Object-Oriented Design"],
         "Features": ["Game Loop", "Collision Detection", "Score System", "Cross-platform"]
       },
-      demoUrl: "#",
+      demoUrl: "",
       sourceUrl: "https://github.com/ScarletWagon/Flappy-Bird--Java"
     },
     
@@ -527,18 +532,49 @@ function getProjectData(projectId) {
         "RESTful API for link management"
       ],
       screenshots: [
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Shorten+URL",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Stats+View",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Link+List",
-        "https://via.placeholder.com/300x200/e53935/ffffff?text=Mobile+View"
+        "content/images/project 6/1.png",
+        "content/images/project 6/2.png",
+        "content/images/project 6/3.png",
+        "content/images/project 6/logo.png"
       ],
       technologies: {
         "Frontend": ["HTML5", "CSS3", "JavaScript"],
         "Backend": ["Node.js", "Express.js", "MongoDB"],
         "Features": ["RESTful API", "URL Redirection", "Usage Stats"]
       },
-      demoUrl: "#",
+      demoUrl: "",
       sourceUrl: "https://github.com/ScarletWagon/Url-Shortner"
+    },
+    classcast: {
+      title: "Class-Cast",
+      heroImage: "content/images/project 7/logo.png",
+      description: "Class-Cast is a secure, cross-platform file sharing application designed for classrooms and educational environments where traditional internet-based solutions are unavailable or impractical. It enables teachers and students to share files quickly and safely over LAN or WLAN, making it ideal for schools, workshops, and training sessions. With a focus on privacy, ease of use, and reliability, Class-Cast bridges the gap in digital resource sharing in offline or restricted network settings.",
+      features: [
+        "Peer-to-peer file sharing over LAN/WLAN with no internet required",
+        "End-to-end encryption for secure transfers",
+        "User-friendly interface for teachers and students",
+        "Drag-and-drop file upload and download",
+        "Automatic device discovery on the local network",
+        "Supports all file types and large file transfers",
+        "Cross-platform: works on Windows, Linux, and macOS",
+        "No installation required for clients (runs from browser)",
+        "Real-time transfer progress and notifications",
+        "Open source and customizable for institutional needs"
+      ],
+      screenshots: [
+        "content/images/project 7/1.png",
+        "content/images/project 7/2.png",
+        "content/images/project 7/3.png",
+        "content/images/project 7/4.png"
+      ],
+      technologies: {
+        "Frontend": ["HTML5", "CSS3", "JavaScript (ES6+)", "WebSockets"],
+        "Backend": ["Node.js", "Express.js", "Socket.IO"],
+        "Security": ["End-to-End Encryption", "LAN/WLAN Only"],
+        "Platform": ["Windows", "Linux", "macOS"]
+      },
+      demoUrl: "https://github.com/ScarletWagon/Class-Cast#readme",
+      sourceUrl: "https://github.com/ScarletWagon/Class-Cast"
     }
   };
   
@@ -564,7 +600,7 @@ function createScreenshotOverlay() {
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.2s';
     overlay.style.visibility = 'hidden';
-    overlay.innerHTML = '<img id="screenshot-expanded" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 0 40px #000;" />';
+    overlay.innerHTML = '<img id="screenshot-expanded" style="max-width:1352px;max-height:845px;width:90vw;height:auto;border-radius:12px;box-shadow:0 0 40px #000;cursor:pointer;" />';
     document.body.appendChild(overlay);
     // Close on click outside image
     overlay.addEventListener('click', function(e) {
@@ -573,6 +609,11 @@ function createScreenshotOverlay() {
     // Close on Escape
     document.addEventListener('keydown', function escListener(e) {
       if (e.key === 'Escape' && overlay.style.visibility === 'visible') closeScreenshotOverlay();
+    });
+    // Close on click of the image itself
+    overlay.querySelector('#screenshot-expanded').addEventListener('click', function(e) {
+      e.stopPropagation();
+      closeScreenshotOverlay();
     });
   }
   return overlay;

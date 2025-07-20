@@ -640,11 +640,21 @@ p {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(110, 193, 228, 0.18);
+  width: 100%;
+  max-width: 500px;
+  min-width: 280px;
+  height: 280px;
+  max-height: 320px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 

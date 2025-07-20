@@ -545,6 +545,79 @@ function getProjectData(projectId) {
   return projects[projectId] || null;
 }
 
+// ===== SCREENSHOT EXPAND FUNCTIONALITY =====
+function createScreenshotOverlay() {
+  let overlay = document.getElementById('screenshot-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'screenshot-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgba(0,0,0,0.95)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = '2000';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.2s';
+    overlay.style.visibility = 'hidden';
+    overlay.innerHTML = '<img id="screenshot-expanded" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 0 40px #000;" />';
+    document.body.appendChild(overlay);
+    // Close on click outside image
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeScreenshotOverlay();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', function escListener(e) {
+      if (e.key === 'Escape' && overlay.style.visibility === 'visible') closeScreenshotOverlay();
+    });
+  }
+  return overlay;
+}
+
+function openScreenshotOverlay(src) {
+  const overlay = createScreenshotOverlay();
+  const img = overlay.querySelector('#screenshot-expanded');
+  img.src = src;
+  overlay.style.visibility = 'visible';
+  overlay.style.opacity = '1';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeScreenshotOverlay() {
+  const overlay = document.getElementById('screenshot-overlay');
+  if (overlay) {
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+      overlay.style.visibility = 'hidden';
+      document.body.style.overflow = '';
+    }, 200);
+  }
+}
+
+// Add click listeners to screenshots after project content is populated
+function addScreenshotExpandListeners() {
+  const screenshotsGrid = document.getElementById('screenshots-grid');
+  if (!screenshotsGrid) return;
+  screenshotsGrid.querySelectorAll('img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      openScreenshotOverlay(img.src);
+    });
+  });
+}
+
+// Patch populateProjectContent to call addScreenshotExpandListeners
+const origPopulateProjectContent = populateProjectContent;
+populateProjectContent = function(projectData) {
+  origPopulateProjectContent(projectData);
+  addScreenshotExpandListeners();
+};
+
 // ===== DOM CONTENT LOADED EVENT LISTENER =====
 // Initialize all interactive functionality when the page loads
 document.addEventListener('DOMContentLoaded', function() {

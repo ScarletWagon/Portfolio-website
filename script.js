@@ -1,5 +1,6 @@
-// ===== FIREFLIES ANIMATION SETUP =====
-// Get the canvas element and its 2D rendering context for drawing fireflies
+// ===== FIREFLIES ANIMATION REFACTORED (V2) =====
+
+// Get the canvas element and its 2D rendering context
 const canvas = document.getElementById('fireflies-bg');
 const ctx = canvas.getContext('2d');
 
@@ -9,33 +10,46 @@ let height = window.innerHeight;
 canvas.width = width;
 canvas.height = height;
 
-// ===== ANIMATION CONSTANTS =====
-// Number of fireflies to create for the background animation (balanced for performance)
-const FIREFLY_COUNT = 125; // Balanced between original and optimized
-// Size range for fireflies (in pixels) - controls how big each firefly appears
-const FIREFLY_MIN_RADIUS = 3;
-const FIREFLY_MAX_RADIUS = 5;
-// Movement speed range for fireflies (pixels per frame) - controls how fast they move
-const FIREFLY_MIN_SPEED = 0.25;
-const FIREFLY_MAX_SPEED = 0.4;
-// Glow intensity range (0-1) - controls how bright each firefly appears
+// ===== ANIMATION CONSTANTS (V2) =====
+const FIREFLY_COUNT = 125;
+const FIREFLY_MIN_RADIUS = 8;
+const FIREFLY_MAX_RADIUS = 10;
+const FIREFLY_MIN_SPEED = 15; // Pixels per second
+const FIREFLY_MAX_SPEED = 30; // Pixels per second
 const GLOW_MIN = 0.3;
 const GLOW_MAX = 1.0;
-// Speed of glow transitions (natural breathing effect)
-const GLOW_SPEED = 0.006;
-// Distance from mouse where fireflies start reacting (in pixels)
-const MOUSE_REACT_DIST = 80;
-// Force multiplier for mouse repulsion - how strongly fireflies escape from mouse
-const MOUSE_PUSH = 5;
-// Performance optimization: skip frames for smoother animation
-const FRAME_SKIP = 2; // Restored for fluidity
+const GLOW_SPEED = 0.005;
+const MOUSE_REACT_DIST = 160;
+const MOUSE_PUSH = 140; // Pushing force in pixels per second
 
 // ===== MOUSE TRACKING =====
-// Store mouse position (start off-screen to avoid initial interactions)
 let mouse = { x: -1000, y: -1000 };
 
+// ===== OFF-SCREEN CANVAS FOR PRE-RENDERING =====
+const fireflyCanvas = document.createElement('canvas');
+const fireflyCtx = fireflyCanvas.getContext('2d');
+const fireflyBaseRadius = 20; // High-res radius for pre-rendering
+fireflyCanvas.width = fireflyBaseRadius * 4;
+fireflyCanvas.height = fireflyBaseRadius * 4;
+
+// Pre-render the firefly glow
+const gradient = fireflyCtx.createRadialGradient(
+  fireflyBaseRadius * 2, fireflyBaseRadius * 2, 0,
+  fireflyBaseRadius * 2, fireflyBaseRadius * 2, fireflyBaseRadius
+);
+gradient.addColorStop(0, 'rgba(110, 193, 228, 1)');
+gradient.addColorStop(0.6, 'rgba(110, 193, 228, 0.5)');
+gradient.addColorStop(1, 'rgba(110, 193, 228, 0)');
+
+fireflyCtx.fillStyle = gradient;
+fireflyCtx.shadowColor = 'rgba(110, 193, 228, 0.8)';
+fireflyCtx.shadowBlur = 30;
+fireflyCtx.beginPath();
+fireflyCtx.arc(fireflyBaseRadius * 2, fireflyBaseRadius * 2, fireflyBaseRadius, 0, Math.PI * 2);
+fireflyCtx.fill();
+
+
 // ===== WINDOW RESIZE HANDLING =====
-// Update canvas size when window is resized to maintain full coverage
 window.addEventListener('resize', () => {
   width = window.innerWidth;
   height = window.innerHeight;
@@ -44,12 +58,8 @@ window.addEventListener('resize', () => {
 });
 
 // ===== MOUSE EVENT LISTENERS =====
-// Optimized mouse tracking with throttling for better performance
 let mouseUpdateTimeout;
-
-// Track mouse movement with throttling to reduce performance impact
 document.addEventListener('mousemove', e => {
-  // Throttle mouse updates to every 16ms (60fps) for better performance
   if (!mouseUpdateTimeout) {
     mouseUpdateTimeout = setTimeout(() => {
       mouse.x = e.clientX;
@@ -59,216 +69,108 @@ document.addEventListener('mousemove', e => {
   }
 });
 
-// Reset mouse position when leaving document (fireflies stop reacting)
 document.addEventListener('mouseleave', () => {
   mouse.x = -1000;
   mouse.y = -1000;
 });
 
 // ===== UTILITY FUNCTIONS =====
-// Generate a random number between two values (inclusive of min, exclusive of max)
 function randomBetween(a, b) {
   return a + Math.random() * (b - a);
 }
 
-// ===== FIREFLY CLASS =====
-// Class to manage individual firefly behavior and rendering
+// ===== FIREFLY CLASS (V2) =====
 class Firefly {
   constructor() {
-    this.reset(); // Initialize firefly with random properties
+    this.reset();
   }
-  
-  // Reset firefly to random initial state with all properties
+
   reset() {
-    // Random starting position within canvas bounds
     this.x = randomBetween(0, width);
     this.y = randomBetween(0, height);
-    
-    // Random size within defined range for visual variety
     this.radius = randomBetween(FIREFLY_MIN_RADIUS, FIREFLY_MAX_RADIUS);
-    this.baseRadius = this.radius; // Store original radius for reference
-    
-    // Random movement direction (0 to 2π radians for full circle)
     this.angle = randomBetween(0, Math.PI * 2);
-    
-    // Random movement speed for natural variation
     this.speed = randomBetween(FIREFLY_MIN_SPEED, FIREFLY_MAX_SPEED);
-    
-    // Random initial glow state and direction
     this.glow = randomBetween(GLOW_MIN, GLOW_MAX);
-    this.glowDir = Math.random() > 0.5 ? 1 : -1; // Random glow direction (brighten/dim)
-    this.glowSpeed = randomBetween(0.5, 1.2); // Individual glow speed variation
-    
-    // Firefly color (baby blue theme to match new design)
-    this.color = 'rgba(110,193,228,1)'; // Baby blue color
-    
-    // Direction change timing for natural movement patterns
+    this.glowDir = Math.random() > 0.5 ? 1 : -1;
+    this.glowSpeed = randomBetween(0.5, 1.2);
     this.changeDirectionTimer = 0;
-    this.maxChangeDirectionTime = randomBetween(300, 800); // Longer intervals for slower movement
-    
-    // Natural breathing effect variables for realistic glow
-    this.breathingTimer = 0;
-    this.breathingInterval = randomBetween(100, 300); // Random breathing intervals
+    this.maxChangeDirectionTime = randomBetween(300, 800);
   }
-  
-  // Update firefly position, glow, and behavior each frame (optimized)
-  update() {
-    // ===== OPTIMIZED NATURAL BREATHING EFFECT =====
-    // Handle natural breathing/glow cycle with reduced frequency
-    this.breathingTimer++;
-    if (this.breathingTimer > this.breathingInterval) {
-      this.glowDir = Math.random() > 0.5 ? 1 : -1;
-      this.breathingTimer = 0;
-      this.breathingInterval = randomBetween(150, 400); // Longer intervals for better performance
-    }
-    
-    // ===== OPTIMIZED NATURAL MOVEMENT =====
-    // Increment direction change timer
-    this.changeDirectionTimer++;
-    
-    // Randomly change direction at intervals for natural movement
-    if (this.changeDirectionTimer > this.maxChangeDirectionTime) {
-      this.angle += randomBetween(-0.15, 0.15); // Smaller direction changes
-      this.changeDirectionTimer = 0;
-      this.maxChangeDirectionTime = randomBetween(400, 1000); // Longer intervals
-    }
-    
-    // ===== OPTIMIZED MOUSE INTERACTION =====
-    // Use squared distance to avoid expensive square root calculation
+
+  update(deltaTime) {
+    // Mouse interaction
     const dx = this.x - mouse.x;
     const dy = this.y - mouse.y;
     const distSquared = dx * dx + dy * dy;
-    const reactDistSquared = MOUSE_REACT_DIST * MOUSE_REACT_DIST;
-    
-    // Check if mouse is within reaction distance and on screen
-    if (distSquared < reactDistSquared && mouse.x > 0 && mouse.y > 0) {
-      // Calculate force based on proximity (closer = stronger effect)
-      const dist = Math.sqrt(distSquared); // Only calculate sqrt when needed
+
+    if (distSquared < MOUSE_REACT_DIST * MOUSE_REACT_DIST && mouse.x > 0) {
+      const dist = Math.sqrt(distSquared);
       const force = (MOUSE_REACT_DIST - dist) / MOUSE_REACT_DIST;
       const angleFromMouse = Math.atan2(dy, dx);
-      
-      // Fireflies bounce away from mouse
-      const escapeSpeed = MOUSE_PUSH * force;
-      this.x += Math.cos(angleFromMouse) * escapeSpeed;
-      this.y += Math.sin(angleFromMouse) * escapeSpeed;
-      
-      // Override natural movement when escaping
+      const pushForce = MOUSE_PUSH * force * deltaTime;
+      this.x += Math.cos(angleFromMouse) * pushForce;
+      this.y += Math.sin(angleFromMouse) * pushForce;
       this.angle = angleFromMouse;
-      
-      // Glow brighter when escaping from mouse
-      this.glow = Math.min(GLOW_MAX * 1.8, this.glow + 0.08);
+      this.glow = Math.min(GLOW_MAX * 1.5, this.glow + 0.08);
     } else {
-      // ===== OPTIMIZED NATURAL GLOW CYCLE =====
-      // Update glow intensity based on direction and speed
+      // Natural movement
+      this.x += Math.cos(this.angle) * this.speed * deltaTime;
+      this.y += Math.sin(this.angle) * this.speed * deltaTime;
+
+      // Glow
       this.glow += this.glowDir * GLOW_SPEED * this.glowSpeed;
-      
-      // Reverse direction when reaching glow limits
-      if (this.glow > GLOW_MAX) {
-        this.glow = GLOW_MAX;
-        this.glowDir = -1;
-        this.glowSpeed = randomBetween(0.6, 1.0); // Reduced variation
-      }
-      if (this.glow < GLOW_MIN) {
-        this.glow = GLOW_MIN;
-        this.glowDir = 1;
-        this.glowSpeed = randomBetween(0.6, 1.0); // Reduced variation
+      if (this.glow > GLOW_MAX || this.glow < GLOW_MIN) {
+        this.glowDir *= -1;
       }
     }
-    
-    // ===== OPTIMIZED NATURAL MOVEMENT =====
-    // Only apply natural movement if not escaping from mouse
-    if (distSquared >= reactDistSquared || mouse.x <= 0) {
-      // Move firefly in current direction
-      this.x += Math.cos(this.angle) * this.speed;
-      this.y += Math.sin(this.angle) * this.speed;
-    }
-    
-    // ===== OPTIMIZED BOUNDARY HANDLING =====
-    // Simplified boundary handling for better performance
-    if (this.x < 0) {
-      this.x = 0;
-      this.angle = randomBetween(-Math.PI/2, Math.PI/2);
-    } else if (this.x > width) {
-      this.x = width;
-      this.angle = randomBetween(Math.PI/2, 3*Math.PI/2);
-    }
-    
-    if (this.y < 0) {
-      this.y = 0;
-      this.angle = randomBetween(0, Math.PI);
-    } else if (this.y > height) {
-      this.y = height;
-      this.angle = randomBetween(Math.PI, 2*Math.PI);
+
+    // Boundary check and reset
+    if (this.x < -this.radius || this.x > width + this.radius || this.y < -this.radius || this.y > height + this.radius) {
+      this.reset();
+      // Place it on the opposite side for continuous flow
+      if (this.x < -this.radius) this.x = width + this.radius;
+      else if (this.x > width + this.radius) this.x = -this.radius;
+      else if (this.y < -this.radius) this.y = height + this.radius;
+      else if (this.y > height + this.radius) this.y = -this.radius;
     }
   }
-  
-  // Render the firefly on the canvas (optimized)
+
   draw(ctx) {
-    // ===== OPTIMIZED RENDERING =====
-    // Skip rendering if firefly is too dim to be visible
-    if (this.glow < 0.1) return;
-    
-    // ===== CREATE OPTIMIZED GLOWING DOT =====
-    // Restore gradient for a more pronounced glow
-    const gradient = ctx.createRadialGradient(
-      this.x, this.y, 0,
-      this.x, this.y, this.radius * 2.5 // Restored glow size
-    );
-    
-    // Baby blue gradient stops
-    gradient.addColorStop(0, `rgba(110, 193, 228, ${this.glow})`);
-    gradient.addColorStop(0.6, `rgba(110, 193, 228, ${this.glow * 0.5})`);
-    gradient.addColorStop(1, 'rgba(110, 193, 228, 0)');
-    
-    // ===== OPTIMIZED RENDERING CONTEXT =====
     ctx.globalAlpha = this.glow;
-    ctx.shadowColor = 'rgba(110, 193, 228, 0.8)';
-    ctx.shadowBlur = 15 * this.glow; // Restored shadow blur for more glow
-    
-    // ===== DRAW OPTIMIZED GLOWING DOT =====
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fillStyle = gradient;
-    ctx.fill();
-    
-    // Reset global alpha to avoid affecting other elements
-    ctx.globalAlpha = 1;
+    // Draw the pre-rendered firefly, scaling it to the firefly's radius
+    // The source image is fireflyBaseRadius*4 wide, we draw it centered on the firefly's x/y
+    const drawSize = this.radius * 2.5;
+    ctx.drawImage(fireflyCanvas, this.x - drawSize / 2, this.y - drawSize / 2, drawSize, drawSize);
   }
 }
 
-// ===== CREATE FIREFLIES =====
-// Create array of firefly objects
+// ===== ANIMATION LOOP (V2) =====
 const fireflies = Array.from({ length: FIREFLY_COUNT }, () => new Firefly());
-
-// ===== OPTIMIZED ANIMATION LOOP =====
-// Performance tracking variables
-let frameCount = 0;
 let lastTime = 0;
 
-// Main animation function with performance optimizations
 function animate(currentTime) {
-  // Frame skipping for better performance on slower devices
-  frameCount++;
-  if (frameCount % FRAME_SKIP !== 0) {
-    requestAnimationFrame(animate);
-    return;
-  }
-  
-  // Clear the entire canvas
+  const deltaTime = (currentTime - lastTime) / 1000; // Time in seconds
+  lastTime = currentTime;
+
   ctx.clearRect(0, 0, width, height);
-  
-  // Update and draw each firefly
+
+  ctx.globalCompositeOperation = 'lighter'; // Brighter glow where fireflies overlap
+
   for (const f of fireflies) {
-    f.update(); // Update position, glow, and behavior
-    f.draw(ctx); // Render the firefly on canvas
+    f.update(deltaTime || 0); // deltaTime will be NaN on first frame
+    f.draw(ctx);
   }
   
-  // Request next frame for smooth animation
+  ctx.globalCompositeOperation = 'source-over'; // Reset composite mode
+  ctx.globalAlpha = 1; // Reset global alpha
+
   requestAnimationFrame(animate);
 }
 
-// Start the optimized animation loop
-animate();
+// Start the animation
+requestAnimationFrame(animate);
+
 
 
 

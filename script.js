@@ -19,7 +19,7 @@ const FIREFLY_MAX_SPEED = 30; // Pixels per second
 const GLOW_MIN = 0.3;
 const GLOW_MAX = 1.0;
 const GLOW_SPEED = 0.005;
-const MOUSE_REACT_DIST = 160;
+const MOUSE_REACT_DIST = 120;
 const MOUSE_PUSH = 140; // Pushing force in pixels per second
 
 // ===== MOUSE TRACKING =====

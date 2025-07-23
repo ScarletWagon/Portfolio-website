@@ -576,6 +576,67 @@ function getProjectData(projectId) {
       demoUrl: "https://github.com/ScarletWagon/Class-Cast#readme",
       sourceUrl: "https://github.com/ScarletWagon/Class-Cast"
     },
+    calorictracker: {
+      title: "Caloric & Steps Tracker",
+      heroImage: "content/images/project 10/logo.png",
+      description: "A comprehensive full-stack iOS health application designed to track daily calories and steps with seamless HealthKit integration. Built with SwiftUI for the frontend and a robust Node.js/Express backend with MongoDB, this app offers real-time health data visualization, milestone tracking, and custom goal setting for a complete wellness experience.",
+      features: [
+        "Secure user authentication with JWT and Keychain storage",
+        "Real-time dashboard showing calories, steps, and daily progress",
+        "HealthKit integration for automatic step counting and background delivery",
+        "Interactive charts visualizing the last 7 days of health data",
+        "Milestone tracking with both default and custom user-defined goals",
+        "Manual step logging for activities not tracked by HealthKit",
+        "Dark mode support with modern iOS design language",
+        "RESTful API with comprehensive endpoints for all data operations",
+        "MongoDB database with optimized schemas for health data",
+        "Background health data synchronization",
+        "Progress analytics and achievement system",
+        "Cross-platform backend supporting multiple iOS devices"
+      ],
+      screenshots: [
+        "content/images/project 10/1.png",
+        "content/images/project 10/2.png",
+        "content/images/project 10/3.png",
+        "content/images/project 10/4.png"
+      ],
+      technologies: {
+        "iOS Frontend": ["SwiftUI", "HealthKit", "Charts Framework", "Keychain Services"],
+        "Backend": ["Node.js", "Express.js", "MongoDB", "JWT Authentication"],
+        "APIs": ["RESTful API", "HealthKit Background Delivery", "Secure Token Management"],
+        "Features": ["Real-time Data Sync", "Milestone Tracking", "Custom Goals", "Dark Mode"]
+      },
+      demoUrl: "",
+      sourceUrl: "https://github.com/ScarletWagon/Caloric-Steps-Tracker-Ios-"
+    },
+    tvguardian: {
+      title: "TV Guardian",
+      heroImage: "content/images/project 9/logo.png",
+      description: "TV Guardian is a web-based application designed to control and monitor TV usage, particularly for Samsung TVs running Tizen OS. It features a backend server to manage rules and logging, a TV-side app that displays a lock screen, and a remote control app for unlocking and viewing activity.",
+      features: [
+        "Parental control for Tizen OS (Samsung TVs)",
+        "Real-time TV usage logging",
+        "Remote control app to unlock TV and view logs",
+        "Node.js backend for rules and violations management",
+        "Web-based TV client and remote control",
+        "Designed for Tizen API integration",
+        "Real-time communication between remote and TV"
+      ],
+      screenshots: [
+        "content/images/project 9/1.png",
+        "content/images/project 9/2.png",
+        "content/images/project 9/3.png",
+        "content/images/project 9/logo.png"
+      ],
+      technologies: {
+        "Frontend": ["React.js", "HTML5", "CSS3", "JavaScript"],
+        "Backend": ["Node.js", "Express.js", "Socket.IO"],
+        "Platform": ["Tizen OS", "Web Browser"],
+        "Features": ["Parental Controls", "Activity Logging", "Real-time Updates"]
+      },
+      demoUrl: "",
+      sourceUrl: "https://github.com/ScarletWagon/Tv-Parental-Control"
+    },
     aistudybuddy: {
       title: "AI Study Buddy",
       heroImage: "content/images/project 8/logo.png",
@@ -630,7 +691,7 @@ function createScreenshotOverlay() {
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.2s';
     overlay.style.visibility = 'hidden';
-    overlay.innerHTML = '<img id="screenshot-expanded" style="max-width:1352px;max-height:845px;width:90vw;height:auto;border-radius:12px;box-shadow:0 0 40px #000;cursor:pointer;" />';
+    overlay.innerHTML = '<img id="screenshot-expanded" style="max-width: 90vw; max-height: 90vh; width: auto; height: auto; border-radius: 12px; box-shadow: 0 0 40px rgba(0,0,0,0.5); cursor: pointer;" />';
     document.body.appendChild(overlay);
     // Close on click outside image
     overlay.addEventListener('click', function(e) {

@@ -10,25 +10,25 @@ canvas.width = width;
 canvas.height = height;
 
 // ===== ANIMATION CONSTANTS =====
-// Number of fireflies to create for the background animation (reduced for performance)
-const FIREFLY_COUNT = 100; // Reduced from 150
+// Number of fireflies to create for the background animation (balanced for performance)
+const FIREFLY_COUNT = 125; // Balanced between original and optimized
 // Size range for fireflies (in pixels) - controls how big each firefly appears
-const FIREFLY_MIN_RADIUS = 2; // Reduced for performance
-const FIREFLY_MAX_RADIUS = 4; // Reduced for performance
+const FIREFLY_MIN_RADIUS = 3;
+const FIREFLY_MAX_RADIUS = 5;
 // Movement speed range for fireflies (pixels per frame) - controls how fast they move
-const FIREFLY_MIN_SPEED = 0.2;
-const FIREFLY_MAX_SPEED = 0.35;
+const FIREFLY_MIN_SPEED = 0.25;
+const FIREFLY_MAX_SPEED = 0.4;
 // Glow intensity range (0-1) - controls how bright each firefly appears
-const GLOW_MIN = 0.2;
-const GLOW_MAX = 0.8;
+const GLOW_MIN = 0.3;
+const GLOW_MAX = 1.0;
 // Speed of glow transitions (natural breathing effect)
-const GLOW_SPEED = 0.005;
+const GLOW_SPEED = 0.006;
 // Distance from mouse where fireflies start reacting (in pixels)
-const MOUSE_REACT_DIST = 70;
+const MOUSE_REACT_DIST = 80;
 // Force multiplier for mouse repulsion - how strongly fireflies escape from mouse
-const MOUSE_PUSH = 4;
+const MOUSE_PUSH = 5;
 // Performance optimization: skip frames for smoother animation
-const FRAME_SKIP = 3; // Increased for more performance savings
+const FRAME_SKIP = 2; // Restored for fluidity
 
 // ===== MOUSE TRACKING =====
 // Store mouse position (start off-screen to avoid initial interactions)
@@ -209,21 +209,21 @@ class Firefly {
     if (this.glow < 0.1) return;
     
     // ===== CREATE OPTIMIZED GLOWING DOT =====
-    // Simplified gradient for better performance
+    // Restore gradient for a more pronounced glow
     const gradient = ctx.createRadialGradient(
       this.x, this.y, 0,
-      this.x, this.y, this.radius * 2.0 // Further reduced glow size
+      this.x, this.y, this.radius * 2.5 // Restored glow size
     );
     
     // Baby blue gradient stops
     gradient.addColorStop(0, `rgba(110, 193, 228, ${this.glow})`);
-    gradient.addColorStop(0.6, `rgba(110, 193, 228, ${this.glow * 0.4})`);
+    gradient.addColorStop(0.6, `rgba(110, 193, 228, ${this.glow * 0.5})`);
     gradient.addColorStop(1, 'rgba(110, 193, 228, 0)');
     
     // ===== OPTIMIZED RENDERING CONTEXT =====
     ctx.globalAlpha = this.glow;
-    ctx.shadowColor = 'rgba(110, 193, 228, 0.7)';
-    ctx.shadowBlur = 10 * this.glow; // Significantly reduced shadow blur
+    ctx.shadowColor = 'rgba(110, 193, 228, 0.8)';
+    ctx.shadowBlur = 15 * this.glow; // Restored shadow blur for more glow
     
     // ===== DRAW OPTIMIZED GLOWING DOT =====
     ctx.beginPath();

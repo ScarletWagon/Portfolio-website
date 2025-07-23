@@ -13,10 +13,11 @@ body {
 
 /* Header */
 .project-header {
-  background: rgba(229, 57, 53, 0.1);
-  border-bottom: 1px solid #e53935;
+  background: rgba(110, 193, 228, 0.1);
+  border-bottom: 1px solid #6EC1E4;
   padding: 1rem 0;
   backdrop-filter: blur(10px);
+  will-change: background, border-bottom; /* Performance optimization */
 }
 
 .header-content {
@@ -30,22 +31,22 @@ body {
 
 .back-btn {
   background: transparent;
-  border: 1px solid #e53935;
-  color: #e53935;
+  border: 1px solid #6EC1E4;
+  color: #6EC1E4;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease; /* Simplified transition */
 }
 
 .back-btn:hover {
-  background: #e53935;
+  background: #6EC1E4;
   color: #fff;
 }
 
 .project-header h1 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 1.8rem;
 }
 
@@ -68,7 +69,7 @@ body {
 .hero-image {
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(229, 57, 53, 0.3);
+  box-shadow: 0 10px 30px rgba(110, 193, 228, 0.2); /* Adjusted shadow color */
   width: 100%;
   max-width: 500px;
   min-width: 280px;
@@ -92,7 +93,7 @@ body {
 }
 
 .hero-info h2 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
@@ -133,31 +134,31 @@ body {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease, transform 0.2s ease; /* Simplified transition */
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  will-change: transform, background; /* Performance optimization */
 }
 
 .btn-primary {
-  background: #e53935;
+  background: #6EC1E4;
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: #d32f2f;
+  background: #5aa8d1;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(229, 57, 53, 0.4);
 }
 
 .btn-secondary {
   background: transparent;
-  color: #e53935;
-  border: 2px solid #e53935;
+  color: #6EC1E4;
+  border: 2px solid #6EC1E4;
 }
 
 .btn-secondary:hover {
-  background: #e53935;
+  background: #6EC1E4;
   color: #fff;
   transform: translateY(-2px);
 }
@@ -169,21 +170,22 @@ body {
 }
 
 .description-section, .screenshots-section, .tech-section {
-  background: rgba(229, 57, 53, 0.05);
-  border: 1px solid rgba(229, 57, 53, 0.2);
+  background: rgba(110, 193, 228, 0.05);
+  border: 1px solid rgba(110, 193, 228, 0.2);
   border-radius: 15px;
   padding: 2rem;
   backdrop-filter: blur(10px);
+  will-change: background, border; /* Performance optimization */
 }
 
 .description-section h3, .screenshots-section h3, .tech-section h3 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
 }
 
 .description-section h4 {
-  color: #e53935;
+  color: #6EC1E4;
   font-size: 1.3rem;
   margin: 1.5rem 0 1rem 0;
 }

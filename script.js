@@ -11,7 +11,7 @@ canvas.width = width;
 canvas.height = height;
 
 // ===== ANIMATION CONSTANTS (V2) =====
-const FIREFLY_COUNT = 125;
+const FIREFLY_COUNT = 115;
 const FIREFLY_MIN_RADIUS = 8;
 const FIREFLY_MAX_RADIUS = 10;
 const FIREFLY_MIN_SPEED = 15; // Pixels per second

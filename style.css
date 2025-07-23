@@ -226,11 +226,12 @@ p {
   cursor: pointer;
   position: relative;
   transition: transform 0.2s ease; /* Simple hover effect */
+  will-change: transform; /* Performance optimization */
 }
 
 /* Hover effect - simple scale instead of complex flip */
 .skill-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateZ(0); /* Added translateZ for hardware acceleration */
 }
 
 /* Front side styling - shows logo and name */
@@ -248,6 +249,7 @@ p {
   box-sizing: border-box;
   position: relative;
   transition: opacity 0.2s ease;
+  will-change: opacity; /* Performance optimization */
 }
 
 /* Back side styling - shows lines of code (simplified) */
@@ -269,11 +271,14 @@ p {
   color: #fff;
   opacity: 0;
   transition: opacity 0.2s ease;
+  will-change: opacity; /* Performance optimization */
+  pointer-events: none; /* Prevents interaction when hidden */
 }
 
 /* Show back side on hover */
 .skill-card:hover .skill-card-back {
   opacity: 1;
+  pointer-events: auto; /* Allow interaction when visible */
 }
 
 /* Hide front side on hover */

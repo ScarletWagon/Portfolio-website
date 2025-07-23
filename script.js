@@ -11,24 +11,24 @@ canvas.height = height;
 
 // ===== ANIMATION CONSTANTS =====
 // Number of fireflies to create for the background animation (reduced for performance)
-const FIREFLY_COUNT = 150;
+const FIREFLY_COUNT = 100; // Reduced from 150
 // Size range for fireflies (in pixels) - controls how big each firefly appears
-const FIREFLY_MIN_RADIUS = 3;
-const FIREFLY_MAX_RADIUS = 5;
+const FIREFLY_MIN_RADIUS = 2; // Reduced for performance
+const FIREFLY_MAX_RADIUS = 4; // Reduced for performance
 // Movement speed range for fireflies (pixels per frame) - controls how fast they move
-const FIREFLY_MIN_SPEED = 0.25;
-const FIREFLY_MAX_SPEED = 0.4;
+const FIREFLY_MIN_SPEED = 0.2;
+const FIREFLY_MAX_SPEED = 0.35;
 // Glow intensity range (0-1) - controls how bright each firefly appears
-const GLOW_MIN = 0.3;
-const GLOW_MAX = 1.0;
+const GLOW_MIN = 0.2;
+const GLOW_MAX = 0.8;
 // Speed of glow transitions (natural breathing effect)
-const GLOW_SPEED = 0.006;
+const GLOW_SPEED = 0.005;
 // Distance from mouse where fireflies start reacting (in pixels)
-const MOUSE_REACT_DIST = 80;
+const MOUSE_REACT_DIST = 70;
 // Force multiplier for mouse repulsion - how strongly fireflies escape from mouse
-const MOUSE_PUSH = 5;
+const MOUSE_PUSH = 4;
 // Performance optimization: skip frames for smoother animation
-const FRAME_SKIP = 2;
+const FRAME_SKIP = 3; // Increased for more performance savings
 
 // ===== MOUSE TRACKING =====
 // Store mouse position (start off-screen to avoid initial interactions)
@@ -212,7 +212,7 @@ class Firefly {
     // Simplified gradient for better performance
     const gradient = ctx.createRadialGradient(
       this.x, this.y, 0,
-      this.x, this.y, this.radius * 2.5 // Reduced glow size for performance
+      this.x, this.y, this.radius * 2.0 // Further reduced glow size
     );
     
     // Baby blue gradient stops
@@ -223,7 +223,7 @@ class Firefly {
     // ===== OPTIMIZED RENDERING CONTEXT =====
     ctx.globalAlpha = this.glow;
     ctx.shadowColor = 'rgba(110, 193, 228, 0.7)';
-    ctx.shadowBlur = 20 * this.glow; // Reduced shadow blur for performance
+    ctx.shadowBlur = 10 * this.glow; // Significantly reduced shadow blur
     
     // ===== DRAW OPTIMIZED GLOWING DOT =====
     ctx.beginPath();

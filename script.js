@@ -568,6 +568,41 @@ function getProjectData(projectId) {
       },
       demoUrl: "",
       sourceUrl: "https://github.com/ScarletWagon/AI-study-buddy"
+    },
+    
+    inventory: {
+      title: "Smart Inventory Platform",
+      heroImage: "content/images/project 11/logo.png",
+      description: "A comprehensive Inventory & Supply Optimization System built with Java, Spring Boot, and React.js. This full-stack application provides real-time inventory tracking, supplier management, and automated restocking capabilities. The system integrates a Python-based AI/ML engine for demand forecasting and supplier optimization, significantly improving restock timing and cost efficiency.",
+      features: [
+        "Real-time inventory tracking and management",
+        "Automated restocking with intelligent demand forecasting",
+        "Supplier management and optimization",
+        "Python-based AI/ML engine for predictive analytics",
+        "Responsive React.js frontend with dynamic forms and charts",
+        "RESTful API with comprehensive endpoints",
+        "Dual database architecture (PostgreSQL + MongoDB)",
+        "Docker containerized deployment",
+        "Interactive data visualization and reporting",
+        "Comprehensive testing with Postman",
+        "Real-time notifications and alerts",
+        "Multi-user role-based access control"
+      ],
+      screenshots: [
+        "content/images/project 11/1.png",
+        "content/images/project 11/2.png",
+        "content/images/project 11/3.png",
+        "content/images/project 11/4.png"
+      ],
+      technologies: {
+        "Backend": ["Java", "Spring Boot", "Maven", "RESTful API"],
+        "Frontend": ["React.js", "JavaScript", "Axios", "Interactive Charts"],
+        "Database": ["PostgreSQL", "MongoDB", "Data Persistence"],
+        "AI/ML": ["Python", "Machine Learning", "Demand Forecasting"],
+        "DevOps": ["Docker", "Containerization", "Postman Testing"]
+      },
+      demoUrl: "",
+      sourceUrl: "https://github.com/ScarletWagon/Smart-Inventory-Platform"
     }
   };
   

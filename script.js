@@ -161,7 +161,7 @@ function animate(currentTime) {
     f.update(deltaTime || 0); // deltaTime will be NaN on first frame
     f.draw(ctx);
   }
-  
+
   ctx.globalCompositeOperation = 'source-over'; // Reset composite mode
   ctx.globalAlpha = 1; // Reset global alpha
 
@@ -182,20 +182,20 @@ function openProject(projectId) {
   // Get the clicked project card
   const projectCard = document.querySelector(`[data-project="${projectId}"]`);
   if (!projectCard) return;
-  
+
   // Get the overlay and content elements
   const overlay = document.getElementById('project-overlay');
-  
+
   // Load project data
   const projectData = getProjectData(projectId);
   if (!projectData) return;
-  
+
   // Populate the Microsoft Store-style layout
   populateProjectContent(projectData);
-  
+
   // Show the overlay with simple fade animation
   overlay.classList.add('active');
-  
+
   // Prevent body scrolling when overlay is open
   document.body.style.overflow = 'hidden';
 }
@@ -204,30 +204,32 @@ function openProject(projectId) {
 function populateProjectContent(projectData) {
   // Update header title
   document.getElementById('project-title').textContent = projectData.title;
-  
+
   // Update hero section
   document.getElementById('hero-image').src = projectData.heroImage;
   document.getElementById('hero-image').alt = projectData.title;
   document.getElementById('hero-title').textContent = projectData.title;
-  
+
   // Update action buttons
   const demoBtn = document.getElementById('demo-btn');
   const sourceBtn = document.getElementById('source-btn');
-  
+
   if (projectData.demoUrl && projectData.demoUrl !== "") {
     demoBtn.style.display = '';
     demoBtn.href = projectData.demoUrl;
     demoBtn.target = "_blank";
+    demoBtn.textContent = projectData.demoText || "Live Demo";
   } else {
     demoBtn.style.display = 'none';
   }
-  
-  sourceBtn.href = projectData.sourceUrl;
-  sourceBtn.target = "_blank";
-  
+
+  sourceBtn.href = projectData.sourceUrl || "#";
+  sourceBtn.target = (projectData.sourceUrl && projectData.sourceUrl !== "#") ? "_blank" : "_self";
+  sourceBtn.textContent = projectData.sourceText || "View Source";
+
   // Update description
   document.getElementById('project-description').textContent = projectData.description;
-  
+
   // Update features list
   const featuresList = document.getElementById('project-features');
   featuresList.innerHTML = '';
@@ -236,7 +238,7 @@ function populateProjectContent(projectData) {
     li.textContent = feature;
     featuresList.appendChild(li);
   });
-  
+
   // Update screenshots
   const screenshotsGrid = document.getElementById('screenshots-grid');
   screenshotsGrid.innerHTML = '';
@@ -246,24 +248,24 @@ function populateProjectContent(projectData) {
     img.alt = 'Project Screenshot';
     screenshotsGrid.appendChild(img);
   });
-  
+
   // Update technologies
   const techGrid = document.getElementById('tech-grid');
   techGrid.innerHTML = '';
   Object.entries(projectData.technologies).forEach(([category, techs]) => {
     const techItem = document.createElement('div');
     techItem.className = 'tech-item';
-    
+
     const h4 = document.createElement('h4');
     h4.textContent = category;
-    
+
     const ul = document.createElement('ul');
     techs.forEach(tech => {
       const li = document.createElement('li');
       li.textContent = tech;
       ul.appendChild(li);
     });
-    
+
     techItem.appendChild(h4);
     techItem.appendChild(ul);
     techGrid.appendChild(techItem);
@@ -273,10 +275,10 @@ function populateProjectContent(projectData) {
 // Function to close the project overlay
 function closeProject() {
   const overlay = document.getElementById('project-overlay');
-  
+
   // Hide overlay with simple fade animation
   overlay.classList.remove('active');
-  
+
   // Re-enable body scrolling
   document.body.style.overflow = '';
 }
@@ -284,6 +286,94 @@ function closeProject() {
 // Function to get project data based on project ID
 function getProjectData(projectId) {
   const projects = {
+    kodacare: {
+      title: "KodaCare",
+      heroImage: "content/images/project 12/logo.png",
+      description: "A multimodal health companion built with Expo Go for robust cross-platform support on iOS and Android. KodaCare is designed to automate chronic illness tracking, securing 2nd Place in the Healthcare Track at PatriotHacks 2026. Rather than relying on standard backend pipelines, it heavily integrates Gemini 2.0 Pro's native multimodal analysis to convert unstructured audio and symptom imagery into structured clinical insights, while seamlessly managing longitudinal records.",
+      features: [
+        "Secured 2nd Place in the Healthcare Track (HackFax x PatriotHacks 2026)",
+        "Built natively for cross-platform deployment on both iOS and Android using Expo Go",
+        "A multimodal health companion designed to automate chronic illness tracking by capturing real-time wellness data to bridge blind spots between physician visits",
+        "Integrated Gemini 2.0 Pro to perform native multimodal analysis, converting unstructured audio notes and symptom imagery into structured clinical insights",
+        "Developed an intelligent logic system that automatically organizes disjointed updates into cohesive medical histories for improved diagnostic accuracy",
+        "Interactive 'Health Horizon' dashboard tracking pain location, severity, and symptom progression over time",
+        "Secure Partner Portal with 6-digit link connecting patients with family or caregivers, delivering actionable daily support tips",
+        "Automated Clinical Summary Export to eliminate White Coat Syndrome during physician appointments"
+      ],
+      screenshots: [
+        "content/images/project 12/1.png",
+        "content/images/project 12/2.png",
+        "content/images/project 12/3.png",
+        "content/images/project 12/4.png",
+        "content/images/project 12/5.png",
+        "content/images/project 12/6.png"
+      ],
+      technologies: {
+        "AI & Multimodal": ["Gemini 2.0 Pro", "Multimodal Vision Analysis", "Audio & Voice Processing", "Context Linker Engine"],
+        "Frontend & Mobile": ["Expo Go", "React Native", "Cross-Platform (iOS/Android)", "TypeScript", "Microphone & Camera APIs"],
+        "Backend": ["Python", "Flask", "Singleton Database Manager", "MongoDB"],
+        "Key Highlights": ["2nd Place - Healthcare Track (PatriotHacks 2026)", "Devpost Featured Project", "Longitudinal Health Records"]
+      },
+      demoUrl: "https://devpost.com/software/kodacare",
+      demoText: "View on Devpost",
+      sourceUrl: "https://github.com/ScarletWagon/KodaCare"
+    },
+    "video-clipper": {
+      title: "Agentic Video Clipper",
+      heroImage: "content/images/project 13/logo.jpg",
+      description: "An AI-powered local application that completely revolutionizes how content creators extract highlights from long-form videos. Built using Streamlit and dual intelligent agents (Ingestion and Planning), it automatically downloads YouTube videos, transcribes the audio, and uses a local LLM to find and extract the perfect clips based on simple text prompts. The final production solution was fully implemented and scaled on AWS using AWS Bedrock and Agent Core to ensure robust enterprise governance and security.",
+      features: [
+        "Fully implemented in AWS using AWS Bedrock and Agent Core to securely scale generative AI capabilities",
+        "Dual intelligent agent architecture (Ingestion and Planning) for autonomous highlight extraction",
+        "Transcribes video using faster-whisper to generate precise word-level timestamps",
+        "Planning Agent utilizes a Map-Reduce chunking strategy to process hours of video without context loss",
+        "Automated video cutting and merging using ffmpeg based on semantic text prompts"
+      ],
+      screenshots: [
+        "content/images/project 13/1.png",
+        "content/images/project 13/2.png",
+        "content/images/project 13/3.png"
+      ],
+      technologies: {
+        "AI & Machine Learning": ["Ollama", "faster-whisper", "Local LLMs", "Dual Agent Architecture"],
+        "Backend & Infrastructure": ["AWS Bedrock", "Agent Core", "Python", "Streamlit", "ffmpeg", "Map-Reduce"],
+        "Key Highlights": ["Fully Implemented in AWS", "Automated Video Editing", "Semantic Timestamping"]
+      },
+      demoUrl: "#",
+      demoText: "Video Walkthrough",
+      sourceUrl: "#",
+      sourceText: "No Source (Internal Project)"
+    },
+    "sports-analytics": {
+      title: "Multimodal Sports Analytics Agent",
+      heroImage: "content/images/project 14/logo.png",
+      description: "A highly intelligent multimodal sports analytics agent that aggregates player health metrics, environmental conditions, travel logs, and training data. It generates predictive injury risk profiles to optimize team readiness for high-intensity match schedules such as the World Cup.",
+      features: [
+        "Aggregates multimodal data including health metrics, environmental conditions, and travel logs",
+        "Generates predictive injury risk profiles for professional athletes",
+        "Optimizes team readiness for high-intensity, year-round club match schedules",
+        "Architected with robust AI guardrails for secure sports media deployments",
+        "Interactive dashboard displaying player risk, workload, and intelligence metrics"
+      ],
+      screenshots: [
+        "content/images/project 14/1.png",
+        "content/images/project 14/2.png",
+        "content/images/project 14/3.png",
+        "content/images/project 14/4.png",
+        "content/images/project 14/5.png",
+        "content/images/project 14/6.png"
+      ],
+      technologies: {
+        "AI & Machine Learning": ["Predictive Modeling", "Multimodal Analytics", "AWS Bedrock", "Agent Core"],
+        "Data Engineering": ["Health Metrics Aggregation", "Travel & Environmental Logs", "Workload Tracking"],
+        "Key Highlights": ["World Cup Readiness", "Predictive Injury Risk", "Comprehensive Dashboard"]
+      },
+      demoUrl: "#",
+      demoText: "Video Walkthrough",
+      sourceUrl: "#",
+      sourceText: "No Source (Internal Project)"
+    },
+
     ecommerce: {
       title: "Data Structures Visualizer",
       heroImage: "content/images/project 1/logo.png",
@@ -311,7 +401,7 @@ function getProjectData(projectId) {
       demoUrl: "",
       sourceUrl: "https://github.com/ScarletWagon/data-structures-visualizer"
     },
-    
+
     taskmanager: {
       title: "Flappy Bird Game",
       heroImage: "content/images/project 2/logo.png",
@@ -339,7 +429,7 @@ function getProjectData(projectId) {
       demoUrl: "",
       sourceUrl: "https://github.com/ScarletWagon/Flappy-Bird--Java"
     },
-    
+
     portfolio: {
       title: "Portfolio Website",
       heroImage: "content/images/project 3/logo.png",
@@ -367,7 +457,7 @@ function getProjectData(projectId) {
       demoUrl: "#",
       sourceUrl: "https://github.com/ScarletWagon/portfolio-website"
     },
-    
+
     todoapp: {
       title: "To-Do App",
       heroImage: "content/images/project 4/1.png",
@@ -569,7 +659,7 @@ function getProjectData(projectId) {
       demoUrl: "",
       sourceUrl: "https://github.com/ScarletWagon/AI-study-buddy"
     },
-    
+
     inventory: {
       title: "Smart Inventory Platform",
       heroImage: "content/images/project 11/logo.png",
@@ -605,7 +695,7 @@ function getProjectData(projectId) {
       sourceUrl: "https://github.com/ScarletWagon/Smart-Inventory-Platform"
     }
   };
-  
+
   return projects[projectId] || null;
 }
 
@@ -631,7 +721,7 @@ function createScreenshotOverlay() {
     overlay.innerHTML = '<img id="screenshot-expanded" style="max-width: 90vw; max-height: 90vh; width: auto; height: auto; border-radius: 12px; box-shadow: 0 0 40px rgba(0,0,0,0.5); cursor: pointer;" />';
     document.body.appendChild(overlay);
     // Close on click outside image
-    overlay.addEventListener('click', function(e) {
+    overlay.addEventListener('click', function (e) {
       if (e.target === overlay) closeScreenshotOverlay();
     });
     // Close on Escape
@@ -639,7 +729,7 @@ function createScreenshotOverlay() {
       if (e.key === 'Escape' && overlay.style.visibility === 'visible') closeScreenshotOverlay();
     });
     // Close on click of the image itself
-    overlay.querySelector('#screenshot-expanded').addEventListener('click', function(e) {
+    overlay.querySelector('#screenshot-expanded').addEventListener('click', function (e) {
       e.stopPropagation();
       closeScreenshotOverlay();
     });
@@ -673,7 +763,7 @@ function addScreenshotExpandListeners() {
   if (!screenshotsGrid) return;
   screenshotsGrid.querySelectorAll('img').forEach(img => {
     img.style.cursor = 'zoom-in';
-    img.addEventListener('click', function(e) {
+    img.addEventListener('click', function (e) {
       e.stopPropagation();
       openScreenshotOverlay(img.src);
     });
@@ -682,34 +772,34 @@ function addScreenshotExpandListeners() {
 
 // Patch populateProjectContent to call addScreenshotExpandListeners
 const origPopulateProjectContent = populateProjectContent;
-populateProjectContent = function(projectData) {
+populateProjectContent = function (projectData) {
   origPopulateProjectContent(projectData);
   addScreenshotExpandListeners();
 };
 
 // ===== DOM CONTENT LOADED EVENT LISTENER =====
 // Initialize all interactive functionality when the page loads
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // ===== TAB NAVIGATION FUNCTIONALITY =====
   // Get all tab buttons and tab content panes
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabPanes = document.querySelectorAll('.tab-pane');
-  
+
   // Add click event listener to each tab button
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab'); // Get the target tab ID
-      
+
       // Remove active class from all buttons and panes
       tabBtns.forEach(b => b.classList.remove('active'));
       tabPanes.forEach(p => p.classList.remove('active'));
-      
+
       // Add active class to clicked button and corresponding pane
       btn.classList.add('active');
       document.getElementById(targetTab).classList.add('active');
     });
   });
-  
+
   // ===== PROJECT CARD INTERACTIONS =====
   // Add click event listeners to all project cards
   const projectCards = document.querySelectorAll('.project-card');
@@ -721,25 +811,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
+
   // ===== PROJECT OVERLAY INTERACTIONS =====
   // Get the project overlay element
   const overlay = document.getElementById('project-overlay');
-  
+
   // Close overlay when clicking outside the content area
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
       closeProject(); // Close the overlay
     }
   });
-  
+
   // Close overlay when pressing the Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('active')) {
       closeProject(); // Close the overlay
     }
   });
-  
+
   // ===== SKILL CARDS INTERACTIONS =====
   // Add hover effects and animations to skill cards
   initializeSkillCards();
@@ -750,7 +840,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeSkillCards() {
   // Get all skill cards once and cache the selection
   const skillCards = document.querySelectorAll('.skill-card');
-  
+
   // Add click event for additional interaction (optional)
   document.addEventListener('click', (e) => {
     const card = e.target.closest('.skill-card');

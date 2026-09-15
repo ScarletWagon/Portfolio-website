@@ -206,9 +206,17 @@ function populateProjectContent(projectData) {
   document.getElementById('project-title').textContent = projectData.title;
 
   // Update hero section
-  document.getElementById('hero-image').src = projectData.heroImage;
-  document.getElementById('hero-image').alt = projectData.title;
+  const heroImageContainer = document.querySelector('.hero-image');
+  const heroImageEl = document.getElementById('hero-image');
+  heroImageEl.src = projectData.heroImage;
+  heroImageEl.alt = projectData.title;
   document.getElementById('hero-title').textContent = projectData.title;
+
+  if (projectData.heroImage && (projectData.heroImage.includes('project 14') || projectData.containHeroImage)) {
+    heroImageContainer?.classList.add('contain-fit');
+  } else {
+    heroImageContainer?.classList.remove('contain-fit');
+  }
 
   // Update action buttons
   const demoBtn = document.getElementById('demo-btn');
@@ -320,7 +328,7 @@ function getProjectData(projectId) {
     },
     "video-clipper": {
       title: "Agentic Video Clipper",
-      heroImage: "content/images/project 13/logo.jpg",
+      heroImage: "content/images/project 13/logo.png",
       description: "An AI-powered local application that completely revolutionizes how content creators extract highlights from long-form videos. Built using Streamlit and dual intelligent agents (Ingestion and Planning), it automatically downloads YouTube videos, transcribes the audio, and uses a local LLM to find and extract the perfect clips based on simple text prompts. The final production solution was fully implemented and scaled on AWS using AWS Bedrock and Agent Core to ensure robust enterprise governance and security.",
       features: [
         "Fully implemented in AWS using AWS Bedrock and Agent Core to securely scale generative AI capabilities",

@@ -454,6 +454,16 @@ p {
   transition: transform 0.3s ease; /* Smooth scaling transition */
 }
 
+/* For logos/graphics that shouldn't be cropped */
+.project-card[data-project="sports-analytics"] .project-thumbnail {
+  background: #ffffff;
+}
+
+.project-card[data-project="sports-analytics"] .project-thumbnail img {
+  object-fit: contain;
+  padding: 10px;
+}
+
 /* Image scale effect on card hover */
 .project-card:hover .project-thumbnail img {
   transform: scale(1.05); /* Slightly enlarge image on hover */
@@ -661,6 +671,15 @@ p {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.hero-image.contain-fit {
+  background: #ffffff;
+}
+
+.hero-image.contain-fit img {
+  object-fit: contain;
+  padding: 12px;
 }
 
 .hero-info {

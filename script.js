@@ -382,6 +382,33 @@ function getProjectData(projectId) {
       sourceText: "No Source (Internal Project)"
     },
 
+    "traffic-controller": {
+      title: "TrafficSim Pro - Autonomous Traffic Light Optimization with Deep Reinforcement Learning",
+      heroImage: "content/images/project 15/logo.png",
+      description: "Discrete grid-based multi-agent traffic simulation and deep RL signal controller reducing urban intersection wait times by 42%.",
+      features: [
+        "Built an interactive 2D discrete simulation engine modeling 4-way multi-lane intersections with discrete collision avoidance, turn-lane mechanics, and configurable vehicle arrival distributions.",
+        "Trained Deep Reinforcement Learning agents (PPO / DQN) using custom state-space feature vectors to dynamically dispatch green waves.",
+        "Achieved a 42% reduction in average vehicle wait times and a 28% increase in corridor throughput compared to traditional fixed-cycle and actuated signal timings.",
+        "Designed a high-performance telemetry dashboard featuring live SVG flow analytics, real-time FPS rendering, manual phase override controls, and automated policy reward evaluation."
+      ],
+      screenshots: [
+        "content/images/project 15/1.png",
+        "content/images/project 15/2.png",
+        "content/images/project 15/3.png",
+        "content/images/project 15/4.png"
+      ],
+      technologies: {
+        "AI & Machine Learning": ["Deep Reinforcement Learning", "PPO", "DQN", "Custom State-Space Features"],
+        "Simulation & Engine": ["2D Discrete Grid Engine", "Multi-Agent Simulation", "Collision Avoidance"],
+        "Dashboard & Analytics": ["High-Performance Telemetry", "Live SVG Flow Analytics", "Real-Time Rendering"]
+      },
+      demoUrl: "index.html",
+      demoText: "Live Demo",
+      sourceUrl: "#",
+      sourceText: "No Source (Internal Project)"
+    },
+
     ecommerce: {
       title: "Data Structures Visualizer",
       heroImage: "content/images/project 1/logo.png",
